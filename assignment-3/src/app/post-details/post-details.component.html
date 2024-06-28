@@ -1,1 +1,25 @@
-<p>post-details works!</p>
+<div *ngIf="post">
+  <h2>{{ post.title }}</h2>
+  <p>{{ post.body }}</p>
+</div>
+
+<div *ngIf="comments && comments.length > 0">
+  <h3> Comments: </h3>
+  <ul>
+  <li *ngFor="let comment of comments" (click)="showCommentDetails(comment.id)">
+    <p>{{ comment.name }} ({{ comment.email }})</p>
+    <p> {{ comment.body }} </p>
+  </li>
+  </ul>
+</div>
+
+<button (click)="showCommentForm = true">Add a comment</button>
+
+<div *ngIf="showCommentForm">
+  <form (ngSubmit)="addComment(name.value, email.value, body.value)">
+    <input type="text" placeholder="Name" #name required><br>
+    <input type="email" placeholder="Email" #email required><br>
+    <textarea placeholder="Comment" #body required></textarea><br>
+    <button type="submit">Submit</button>
+  </form>
+</div>

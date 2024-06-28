@@ -1,28 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  private baseUrl = 'https://jsonplaceholder.typicode.com';
+  private apiUrl = 'https://jsonplaceholder.typicode.com';
 
   constructor(private http: HttpClient) { }
 
   getPosts(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/posts`);
+    return this.http.get<any[]>(`${this.apiUrl}/posts`);
   }
 
-  getPost(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/posts/${id}`);
+  getPostDetails(postId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/posts/${postId}`);
   }
 
   getComments(postId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/posts/${postId}/comments`);
+    return this.http.get<any[]>(`${this.apiUrl}/posts/${postId}/comments`);
   }
 
   addComment(comment: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/comments`, comment);
+    return this.http.post<any>(`${this.apiUrl}/comments`, comment);
   }
 }
