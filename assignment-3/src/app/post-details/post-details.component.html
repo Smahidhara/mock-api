@@ -3,10 +3,14 @@
   <p>{{ post.body }}</p>
 </div>
 
-<div *ngIf="comments">
-  <div *ngFor="let comment of comments" (click)="showCommentDetails(comment.id)">
+<div *ngIf="comments && comments.length > 0">
+  <h3> Comments: </h3>
+  <ul>
+  <li *ngFor="let comment of comments" (click)="showCommentDetails(comment.id)">
     <p>{{ comment.name }} ({{ comment.email }})</p>
-  </div>
+    <p> {{ comment.body }} </p>
+  </li>
+  </ul>
 </div>
 
 <button (click)="showCommentForm = true">Add a comment</button>

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-post-details',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './post-details.component.html',
   styleUrl: './post-details.component.css'
 })
@@ -50,4 +51,7 @@ export class PostDetailsComponent implements OnInit{
     });
   }
 
+    showCommentDetails(comment: any) {
+      console.log('Showing Comment details:', comment);
+    }
 }
